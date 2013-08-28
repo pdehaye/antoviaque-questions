@@ -1,0 +1,15 @@
+QUESTION
+========
+SERVICES.1: There is talk about "services" which are called cms, lms, etc... Are these ubuntu upstart services? should they automatically be created by the playbooks?
+SERVICES.2: How can we stop/start/restart "the services". is there a proposed procedure?
+
+TIME ESTIMATE
+=============
+SERVICES.1:
+SERVICES.2:
+
+ANSWER
+======
+
+
+

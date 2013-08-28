@@ -1,0 +1,34 @@
+QUESTION
+========
+THEMING.1: How did Stanford get its theme to work on edX?
+
+We are asking with the perspective of a course launch mid-September (internal to our institute). 
+We don't really care that Stanford's solution is hacky. 
+What we  would like to do is be able to install the theme
+https://github.com/Stanford-Online/edx-theme
+with the convenience of a playbook.
+We can do the next step  of modifying the stanford theme to make it suit our style.
+
+We figured we at least need to change the variable edxapp_theme_name, for instance directly in 
+playbooks/edx-east/roles/edxapp/vars/main.yml
+
+We did that and it seems to be recognized: it copies Stanford-online/edx-theme into a folder stanford in the directory /opt/wwc/themes
+But nothing else much seems to happen...
+
+Note:
+lms/envs/common.py  also contains the variable 'USE_CUSTOM_THEME' and the function enable_theme, see its docstring
+rakelib/assets.rake contains THEME_NAME = ENV_TOKENS['THEME_NAME']
+One can add "THEME_NAME":"stanford" to env.json, still does not seem to make a difference
+
+THEMING.2: Is the theme applied during the playbook? After the setup? Recommandations?
+THEMING.3: Say we update a theme. how do we play it onto a server? How difficult is it to play it onto a running machine?
+
+TIME ESTIMATE
+=============
+THEMING.1: 
+THEMING.2:
+THEMING.3:
+
+
+
+

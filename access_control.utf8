@@ -1,0 +1,19 @@
+QUESTION
+========
+
+As far as I know anyone who knows the IP address of the Studio instance can create an account on Studio, with potential security risk: 
+they could add custom python homework and run arbitrary code on the server.
+
+CONTROL.1: What is the canonical way to restrict access to Studio, such that legitimate users can still access it?
+
+
+Time estimate
+=============
+
+CONTROL.1: 
+
+
+Answer
+======
+
+

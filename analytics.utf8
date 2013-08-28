@@ -1,0 +1,21 @@
+QUESTION
+========
+
+As far as I know, in edX code, documentation and UI, the word "analytics" appears multiple times:
+ - there is an analytics tab for instructors within studio
+ - insights repo on github
+ - edxanalytics repo on github
+
+These together have at least two different roles:
+ - one to help the instructor teach (how many students answered this quiz/hw successfully?, etc)
+ - the other one to help further paedagogy research (keep logs of all student/site interactions in order to answer questions such as "how often do students pause videos?" "do they go back to the video when doing the homework?", etc)
+
+ANALYTICS.1: Correct so far?
+
+ANALYTICS.2: Do you know how to install insights and edxanalytics? If so, how long does it take to install that? What does it allow us to do? 
+
+
+TIME ESTIMATE
+=============
+ANALYTICS.1:  
+ANALYTICS.2:  

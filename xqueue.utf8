@@ -1,0 +1,24 @@
+QUESTION
+========
+
+We want to install xqueue. We played the playbook, and then enter
+
+<problem markdown="null">
+  <p>
+Some nice problem
+</p>
+  <p>A box of stuff to grade</p>
+  <coderesponse url="http://fancy.url.com">
+    <codeparam></codeparam>
+    <textbox/>
+  </coderesponse>
+  <p/>
+</problem>
+
+as a problem. We test and get the response: "Error checking problem: no external queueing server is configured."
+
+XQUEUE.1: How do we fix it?
+
+TIME ESTIMATE
+=============
+X_QUEUE.1: 

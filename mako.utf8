@@ -1,0 +1,10 @@
+QUESTION
+========
+MAKO.1: How does one use mako templates? (I m not asking how to write a template, just where to put them and how to make the rest of edx interact with them!)
+ 
+Example: I want every yotuube video to be followed by an html block that says "here was a youtube video!". For this I make a template called videohtml, let's say. 
+Where do I put the template (which folder), where do I signal that videohtml is a template name?
+
+TIME ESTIMATE
+=============
+MAKO.1
