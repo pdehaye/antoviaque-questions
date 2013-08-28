@@ -1,0 +1,11 @@
+What should be backed up?
+
+
+Description: 
+   for backup and restore we were thinking about using the dump procedures provided by mongodb and mysql, respectively.
+   then we would use the backups from our IT department to backup the dumps.
+   for restore we would use the restore procedures provided by mongodb and mysql, respectively.
+
+Questions:
+   - Do you see anything wrong with the proposal ?
+   - If so, could you give a few pointer about how to attack it?

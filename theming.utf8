@@ -6,8 +6,8 @@ We are asking with the perspective of a course launch mid-September (internal to
 We don't really care that Stanford's solution is hacky. 
 What we  would like to do is be able to install the theme
 https://github.com/Stanford-Online/edx-theme
-with the convenience of a playbook.
-We can do the next step  of modifying the stanford theme to make it suit our style.
+with the convenience of a playbook. (if possible, or as a general procedure which we apply via playbooks or shellscripts)
+We can do the next step of modifying the stanford theme to make it suit our style.
 
 We figured we at least need to change the variable edxapp_theme_name, for instance directly in 
 playbooks/edx-east/roles/edxapp/vars/main.yml
@@ -20,8 +20,8 @@ lms/envs/common.py  also contains the variable 'USE_CUSTOM_THEME' and the functi
 rakelib/assets.rake contains THEME_NAME = ENV_TOKENS['THEME_NAME']
 One can add "THEME_NAME":"stanford" to env.json, still does not seem to make a difference
 
-THEMING.2: Is the theme applied during the playbook? After the setup? Recommandations?
-THEMING.3: Say we update a theme. how do we play it onto a server? How difficult is it to play it onto a running machine?
+THEMING.2: Is the theme applied during the playbook? After the setup? Recommendations?
+THEMING.3: Say we update a theme. how do we play it onto a server? How difficult is it to play it onto a running machine? Is it just a matter of shutting down edx for maintenance, putting the themes, and restarting edx?
 
 TIME ESTIMATE
 =============

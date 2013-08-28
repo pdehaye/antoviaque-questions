@@ -1,3 +1,6 @@
+Goal: Get us to a working edxanalytics part
+
+========
 QUESTION
 ========
 
@@ -12,10 +15,12 @@ These together have at least two different roles:
 
 ANALYTICS.1: Correct so far?
 
-ANALYTICS.2: Do you know how to install insights and edxanalytics? If so, how long does it take to install that? What does it allow us to do? 
+ANALYTICS.2: Do you know how to install insights or edxanalytics? If so, how long does it take to install that? What does it allow us to do? Is is possible/recommended/en-/discouraged to install it separately or later? 
 
+ANALYTICS.3: Do you have an oppinion about the scope of analytics and insights in the next few months (where's the future heading, will insights superseed the functionality of analytics, etc.)
 
 TIME ESTIMATE
 =============
 ANALYTICS.1:  
 ANALYTICS.2:  
+ANALYTICS.3:

@@ -1,6 +1,6 @@
 QUESTION
 ========
-ID.1: How could we transmit a student id/login name to a custom python grading script?
+ID.1: How could we transmit a student id/login name to a custom python grading script? (e.g. get some info from a python script associated to a text-box or input field)
 
 
 TIME ESTIMATE
