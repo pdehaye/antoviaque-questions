@@ -1,0 +1,34 @@
+SITUATION
+=========
+
+We want to use the configuration repo for setting up and configuring our machines.
+
+We had (some) success with changing values in the folders
+
+     playbooks/roles/<rolename>/vars/
+
+for the different roles. But we don't have much experience with variable precedence
+ and in particular with parametrized variables putting directly in the initial
+ playbook and the 'secure_dir' variable.
+
+QUESTION
+========
+
+CONFIGURATION.1: We would ideally like to have some properties with our use
+                 of the configuration repo:
+                   - having all changes (variables etc.) made to the configuration
+                      within one or two files or directory. (or two with 'secure_dir')
+                   - (if possible) also only having to call one playbook.
+
+                  This would give us independence of the generic edx repo
+                  in terms of development/testing/documentation and be like
+                  an "internal use plugin".
+
+                  Do you know if some kind of playbook or config-file/dir is possible?
+                  If yes, can you describe how to setup such a "plugin playbook"?
+
+
+TIME ESTIMATE
+=============
+CONFIGURATION.1: 
+
