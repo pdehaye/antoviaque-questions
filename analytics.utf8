@@ -19,8 +19,21 @@ ANALYTICS.2: Do you know how to install insights or edxanalytics? If so, how lon
 
 ANALYTICS.3: Do you have an oppinion about the scope of analytics and insights in the next few months (where's the future heading, will insights superseed the functionality of analytics, etc.)
 
-TIME ESTIMATE
-=============
+ANSWER
+======
+
 ANALYTICS.1:  
-ANALYTICS.2:  
-ANALYTICS.3:
+
+That's correct yes, as far as I can tell for the goals - giving feedback about how the
+classroom is doing, and processing data for research. The `insights` repository seem to
+have been designed with flexibility in mind, which would be useful for both scenarios.
+
+I haven't attempted to install them, but `insight` and `edxanalytics` are actually closely
+related. In a nutshell, `insights` seem to be a generic analytics software, developped by
+edX but potentially usable with other applications than edX. `edxanalytics` is code &
+templates used by insights when it is used with edX.
+
+Also note that both seem to be experimental/development versions of what would be used in
+the future for running analytics on edX - I haven't looked at the code for this, so not
+sure what's currently used, but the repositories seem to indicate that it's not the case
+yet, so not sure those two can be used yet.
