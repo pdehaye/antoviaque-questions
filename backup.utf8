@@ -9,3 +9,43 @@ Description:
 Questions:
    - Do you see anything wrong with the proposal ?
    - If so, could you give a few pointer about how to attack it?
+
+Answer:
+
+This seems completely reasonable. When there is no pre-existing architecture, I usually
+recommend to externalize db+backup, as this part is not specific to edX, so it can be
+worth letting someone else worry about it. Ie, when the installation is on AWS, using RDS
+for MySQL and mongolab for the mongo databases, and using their backup services to save
+them.
+
+However, in your case, it makes sense to use your IT department backup capabilities. If
+they also offer to run MySQL/Mongo, that might be worth taking advantage of it, similarly
+as you would from RDS/mongolab. If they are already running instances for other projects,
+you might also benefit from existing backup procedures.
+
+If not, and you want to do the backups, you will need dump the contents of the different
+databases. The tools which will allow you to do this are:
+
+* `mysqldump`: http://dev.mysql.com/doc/refman/5.1/en/mysqldump.html
+* `mongodump`: http://docs.mongodb.org/manual/reference/program/mongodump/
+
+Here are some sample command line calls - to adapt to your case:
+```
+$ mysqldump -u root --single-transaction $db > /opt/backup/sql/$db.sql
+$ mongodump --db $db --out /opt/backup/mongodump/$db
+```
+
+In all cases, make sure you're correctly setting up databases to point to external
+servers, don't let the default `edx_sandbox.yml` values which use the `edxlocal` role to
+setup local database servers on the same instance. You basically want to work with the
+assumption that you should be able to destroy your instances at any time without losing
+anything. Not only this ensures that you backup everything that should be, it also ensures
+that you won't make changes directly on the instances, but rather always from the ansible
+playbooks. This way you don't accumulate entropy on the VMs, and all changes to the servers
+are versioned with git (which you will also need to backup those repos, if you don't use 
+github).
+
+The best way to ensure this discipline, and make it easier to follow, is to setup an 
+automated build. It would automatically recreate the instance from scratch every time 
+a change is made from one of the repositories.
+
