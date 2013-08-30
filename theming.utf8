@@ -23,12 +23,41 @@ One can add "THEME_NAME":"stanford" to env.json, still does not seem to make a d
 THEMING.2: Is the theme applied during the playbook? After the setup? Recommendations?
 THEMING.3: Say we update a theme. how do we play it onto a server? How difficult is it to play it onto a running machine? Is it just a matter of shutting down edx for maintenance, putting the themes, and restarting edx?
 
-TIME ESTIMATE
-=============
-THEMING.1: 
-THEMING.2:
-THEMING.3:
+ANSWER
+======
 
+THEMING.1: 
+
+You seem to be on the right track. I've investigated this a bit, and as far as I can tell 
+without looking directly at your installation, your troubles might come from the way you 
+set the theme name.
+
+First, you actually have two other variables related to the theme name that you can set:
+
+```
+edxapp_theme_name: 'stanford'
+edxapp_theme_source_repo: 'https://github.com/antoviaque/edx-theme.git'
+edxapp_theme_version: 'HEAD'
+```
+
+You have already changed `edxapp_theme_source_repo`, but check that you also changed
+`edxapp_theme_name`.
+
+Also, unless this was changed since the last time I installed a theme, you also need to
+set the `THEME_NAME` like this, still in your ansible playbooks (the files
+`/opt/wwc/*.json` are handled by ansible, so you shouldn't alter them directly):
+
+```
+generic_env_config: &edxapp_generic_env
+    ...
+    'THEME_NAME': 'stanford'
+```
+
+This will make ansible add the `THEME_NAME` variable  to the env tokens. This is similar
+to what you did, but besides not doing it from ansible, you might have been doing the
+change in the wrong file, as the lms environment is found in `/opt/wwc/lms*.env.json`
+(there can be several variants of the LMS service on a single host, and thus different
+files).
 
 
 
