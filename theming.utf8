@@ -60,4 +60,15 @@ change in the wrong file, as the lms environment is found in `/opt/wwc/lms*.env.
 files).
 
 
+THEMING.2: 
+
+The theme is not strictly speaking "applied" during the playbook - the original files from
+edx-platform will remain unchanged. Rather, the theme repository is fetched (as you
+observed) and the configuration variables get the code from `edx-platform` to load the
+templates and static files from the theme directory.
+
+Note that the theming capabilities currently don't allow to override everything from
+edx-platform, so depending on the design that you will want to implement, you might also
+have to alter `edx-platform` directly (this is actually what Stanford did for some of
+their own changes).
 
