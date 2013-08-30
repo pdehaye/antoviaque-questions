@@ -7,13 +7,46 @@ they could add custom python homework and run arbitrary code on the server.
 CONTROL.1: What is the canonical way to restrict access to Studio, such that legitimate users can still access it?
 
 
-Time estimate
+Answer
 =============
 
 CONTROL.1: 
 
+The way it seems to be done for edx.org is through the use of basic HTTP auth - ie adding
+a login/password HTTP auth popup when someone attempts to access the CMS (Studio). It's a
+single login/password which is identical for everyone, and simply prevents anyone who
+doesn't have it to access Studio altogether.
 
-Answer
-======
+Also note that, for those who have the HTTP auth login/password, once they are on Studio
+the normal user account restrictions will apply. Ie even if someone gained access to the
+shared login/password, users can only view and edit courses they have created, or to which
+they have been invited. So this initial HTTP auth is only one extra layer of security.
+
+The way it's done is to configure nginx to ask for a HTTP password when proxying the CMS
+service, which is configured from the following template:
+
+https://github.com/edx/configuration/blob/master/playbooks/roles/nginx/templates/cms.j2
+
+which goes to `/etc/nginx/sites-enabled` on the VM.
+
+To keep it simple, you can edit that template to add:
+
+```
+location / {
+    ...
+    auth_basic "Restricted";
+    auth_basic_user_file /etc/nginx/nginx.htpasswd;
+}
+```
+
+The content of `/etc/nginx/nginx.htpasswd` is already set by ansible in
+https://github.com/edx/configuration/blob/master/playbooks/roles/nginx/tasks/main.yml#L17
+
+using the configuration variable `nginx_cfg.htpasswd` from 
+https://github.com/edx/configuration/blob/master/playbooks/roles/nginx/vars/main.yml#L20
+
+The default value seem to be the login/password `edx`/`edx`. If you want something harder
+to guess add the `nginx_cfg` config variables to your `configuration-secure` repository,
+with a different value for `htpasswd`.
 
 
