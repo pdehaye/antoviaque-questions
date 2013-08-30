@@ -3,13 +3,49 @@ QUESTION
 SERVICES.1: There is talk about "services" which are called cms, lms, etc... Are these ubuntu upstart services? should they automatically be created by the playbooks?
 SERVICES.2: How can we stop/start/restart "the services". is there a proposed procedure?
 
-TIME ESTIMATE
+ANSWER
 =============
 SERVICES.1:
+
+Yes, each role from the ansible playbooks provides different services, which are setup as Ubuntu upstart scripts. 
+
+For example, the edxapp role creates the following upstart services, using templates in `playbooks/roles/edxapp/templates/*.conf.j2`
+
+```
+# ls playbooks/roles/edxapp/templates/*.conf.j2
+playbooks/roles/edxapp/templates/cms.conf.j2                 playbooks/roles/edxapp/templates/edx-worker-lms.conf.j2  playbooks/roles/edxapp/templates/lms-preview.conf.j2
+playbooks/roles/edxapp/templates/edx-worker-cms.conf.j2      playbooks/roles/edxapp/templates/edx-workers.conf.j2     playbooks/roles/edxapp/templates/lms-xml.conf.j2
+playbooks/roles/edxapp/templates/edx-worker-lms-xml.conf.j2  playbooks/roles/edxapp/templates/edxapp.conf.j2          playbooks/roles/edxapp/templates/lms.conf.j2
+```
+
+These templates are evaluated and copied to `/etc/init` on the VM being configured.
+
+
 SERVICES.2:
 
-ANSWER
-======
+To stop a service:
+
+```
+# service <name> stop
+```
+
+To start a service:
+
+```
+# service <name> start
+```
+
+To restart:
+
+```
+# service <name> restart
+```
+
+Also, you can either start/stop the LMS & CMS services individually (ie, `service lms-xml restart`), or all at the same time using the `edxapp` service:
+
+```
+# service edxapp restart
+```
 
 
 
