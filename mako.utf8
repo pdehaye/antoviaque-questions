@@ -5,6 +5,29 @@ MAKO.1: How does one use mako templates? (I m not asking how to write a template
 Example: I want every yotuube video to be followed by an html block that says "here was a youtube video!". For this I make a template called videohtml, let's say. 
 Where do I put the template (which folder), where do I signal that videohtml is a template name?
 
-TIME ESTIMATE
-=============
+ANSWER
+======
+
 MAKO.1
+
+It will highly depend on the exact feature you want to alter - edx-platform is actually a
+collection of django applications, so there are different set of templates and different
+ways for the django applications to load them. How templates are loaded from views is
+actually more of a Django question, even if the project doesn't use the default templating
+language that comes with Django. 
+
+If you haven't already, I would recommend spending some time getting familiar with the
+Django documentation on this subject, which is very comprehensive: 
+
+* Views and URLconf: http://www.djangobook.com/en/2.0/chapter03.html Django tutorial:
+* https://docs.djangoproject.com/en/1.4/intro/tutorial01/
+
+Once this is done, the following should make more sense:
+
+The structure is different from a typical Django application. For the LMS, the templates
+are located in `lms/templates/` (cf video.html for example) and the urls conf which will
+allow you to track down what handles a particular view (And thus calls the template you
+are looking for) is in `lms.urls.py`. A similar structure exists for the CMS in `cms/`.
+
+We can follow up with additional questions on this, if there are some specific parts you
+want more precise explanations about.
