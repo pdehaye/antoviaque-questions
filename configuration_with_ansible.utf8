@@ -28,10 +28,62 @@ CONFIGURATION.1: We would ideally like to have some properties with our use
                   If yes, can you describe how to setup such a "plugin playbook"?
 
 
-TIME ESTIMATE
-=============
-CONFIGURATION.1: 
-
-
 ANSWER
 =======
+
+CONFIGURATION.1:
+
+Yes, it's definitely better to isolate the configuration variables which are specific to
+your own installation separately. I actually use a separate repository for this pruprose -
+this way you can keep the configuration variables in a private repository (since you don't
+want passwords to be available publicly), while still keeping the more general changes you
+make to the configuration repository available publicly, as required by the AGPL license
+of that repository (it would be illegal to keep those changes private).
+
+* Private: configuration-secure
+* Public: configuration
+
+Then, using variable precedence rules (cf
+http://www.ansibleworks.com/docs/playbooks2.html#understanding-variable-precedence )
+configuration-secure is structured like this:
+
+```
+|-- group_vars -> ../configuration/playbooks/group_vars/
+|-- hosts_production.lst
+|-- hosts_staging.lst
+`-- vars
+    `-- edxapp_vars.yml
+```
+
+`edxapp_vars.yml` will contain any variable coming from any of the roles variables
+  (`playbooks/roles/*/vars/main.yml`) which you want to overwrite.
+
+`hosts_*.lst` is an inventory file, containing something like:
+
+```
+[localhost]
+edx.antoviaque.org
+```
+
+Using the group name `localhost` will allow us to use the sandbox playbook remotely
+without having to change the hostname.
+
+`group_vars` is accessd by Ansible from the same directory as the inventory file, so the
+symlink allows to use the default values if you don't need to changed them
+
+There is one change you would still need to make in the `configuration` repository, which
+is to get it to load the overriding variables from a directory we can configure from the
+ansible command-line (the edx_sandbox.yml used to have this line, but it was removed from
+the official repo):
+
+https://github.com/antoviaque/configuration/commit/703d06aafac8cedb0bf23ff86930778c075ee817
+
+Assuming you put both `configuration` and `configuration-secure` repositories in the same
+directory, to run the edx_sandbox.yml playbook remotely on edx.antoviaque.org, you would
+run:
+
+```
+$ ansible-playbook -vvv --user=ubuntu -i ../../configuration-secure/hosts_staging.lst -s --extra-vars="secure_dir=../../configuration-secure" edx_sandbox.yml
+```
+
+
